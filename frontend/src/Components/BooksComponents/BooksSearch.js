@@ -1,6 +1,6 @@
 import React from 'react'
 
-const BookSearch = (props) => {
+const BooksSearch = (props) => {
 
     return(
         <div className = "ui search searchBar">
@@ -12,4 +12,4 @@ const BookSearch = (props) => {
     )
 }
 
-export default BookSearch;
+export default BooksSearch;

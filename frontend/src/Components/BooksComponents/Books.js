@@ -1,5 +1,5 @@
 import React from 'react'
-import BookSearch from './BookSearch';
+import BooksSearch from './BooksSearch';
 import BooksCollection from './BooksCollection';
 import { Container } from 'semantic-ui-react'
 
@@ -55,7 +55,7 @@ class Books extends React.Component {
         return (
             <div>
                 <h1>Catalog</h1>
-                <BookSearch handleSearchInput={this.handleSearchInput} />
+                <BooksSearch handleSearchInput={this.handleSearchInput} />
                <Container>
                    <BooksCollection books={this.state.renderedBooks} />
                </Container>
