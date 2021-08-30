@@ -3,6 +3,11 @@ require 'faker'
 30.times do
     Author.create(first_name: Faker::Name.first_name, 
                  last_name: Faker::Name.last_name,
+                 birth_city: Faker::Address.city,
+                 birth_state: Faker::Address.state,
+                 birth_date: Faker::Date.backward(days: 30000),
+                 college: Faker::Educator.university,
+                 degree: Faker::Educator.degree
                 )
 end
 
@@ -10,5 +15,19 @@ end
     #sample pulls a random element out of an array 
     id = Author.all.sample.id
     Book.create(title: Faker::Book.title, 
-                genre: Faker::Book.genre, publishing_date: Faker::Date.backward(days: 500), author_id: id, rating: Faker::Number.within(range: 1..10))
+                genre: Faker::Book.genre, 
+                publishing_date: Faker::Date.backward(days: 15000), 
+                author_id: id, 
+                rating: Faker::Number.within(range: 1..10))
+end
+
+1.times do 
+    AuthorRequest.create(first_name: '' ,
+                 last_name: '',
+                 birth_city: '',
+                 birth_state: '',
+                 birth_date: '',
+                 college: '',
+                 degree: ''
+    )
 end
