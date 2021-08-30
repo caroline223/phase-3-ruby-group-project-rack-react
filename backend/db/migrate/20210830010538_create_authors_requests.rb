@@ -1,6 +1,6 @@
 class CreateAuthorsRequests < ActiveRecord::Migration[5.2]
   def change
-    create_table :authorsrequests do |t|
+    create_table :author_requests do |t|
       t.string :first_name
       t.string :last_name
       t.string :birth_city

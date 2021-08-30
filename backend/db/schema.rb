@@ -12,18 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2021_08_30_010538) do
 
-  create_table "authors", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
-    t.string "birth_city"
-    t.string "birth_state"
-    t.date "birth_date"
-    t.string "college"
-    t.string "degree"
-    t.string "image_url"
-  end
-
-  create_table "authorsrequests", force: :cascade do |t|
+  create_table "author_requests", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
     t.string "birth_city"
@@ -33,6 +22,17 @@ ActiveRecord::Schema.define(version: 2021_08_30_010538) do
     t.string "degree"
     t.string "image_url"
     t.integer "author_request_id"
+  end
+
+  create_table "authors", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "birth_city"
+    t.string "birth_state"
+    t.date "birth_date"
+    t.string "college"
+    t.string "degree"
+    t.string "image_url"
   end
 
   create_table "books", force: :cascade do |t|
