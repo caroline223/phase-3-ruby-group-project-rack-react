@@ -1,4 +1,5 @@
 import React from 'react'
+import AuthorsSearch from './AuthorsSearch'
 import AuthorsCollection from './AuthorsCollection'
 import { Container } from 'semantic-ui-react'
 
@@ -26,11 +27,31 @@ class Authors extends React.Component {
         })
     }
 
+    filterSearchByInput = (input) => {
+        console.log(input)
+        return this.state.authors.filter(author => author.last_name.toLowerCase().includes(input.toLowerCase())) 
+
+    }
+
+    handleSearchInput = (event) => {
+        this.setState({
+            searchInput: event.target.value
+        })
+
+        if(event.target.value === '' ) {
+            this.setState({ renderedAuthors: [...this.state.authors]})
+        } else {
+            this.setState({ renderedAuthors: this.filterSearchByInput(event.target.value)})
+        }
+
+    }
+
 
     render() {
         return (
            <>
            <h1>Author's Catalog</h1>
+            <AuthorsSearch handleSearchInput={this.handleSearchInput} />
             <Container>
                    <AuthorsCollection authors={this.state.renderedAuthors} />
             </Container>
