@@ -1,6 +1,7 @@
 import React from 'react'
 import AuthorsSearch from './AuthorsSearch'
 import AuthorsCollection from './AuthorsCollection'
+import { Link } from 'react-router-dom'
 import { Container } from 'semantic-ui-react'
 
 
@@ -55,6 +56,9 @@ class Authors extends React.Component {
             <Container>
                    <AuthorsCollection authors={this.state.renderedAuthors} />
             </Container>
+            <p>If your favorite author is not listed here, fill out this request</p>
+            <p>so that we could add them to our library</p>
+            <Link to="/arequests">Request</Link>
            </> 
         );     
     }
