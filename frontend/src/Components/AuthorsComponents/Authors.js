@@ -1,5 +1,6 @@
 import React from 'react'
 import AuthorsSearch from './AuthorsSearch'
+import AuthorsId from './AuthorsId'
 import AuthorsCollection from './AuthorsCollection'
 import { Link } from 'react-router-dom'
 import { Container } from 'semantic-ui-react'
@@ -10,8 +11,7 @@ class Authors extends React.Component {
     state = {
         authors: [],
         renderedAuthors: [],
-        currentPage: 1,
-        cardsPerPage: 10,    
+            
     }
 
 
@@ -19,6 +19,10 @@ class Authors extends React.Component {
         fetch('http://localhost:9292/authors')
         .then(response => response.json())
         .then(this.setInitialAuthors);
+    }
+
+    setPageNum = (event, { activePage}) => {
+        this.setState({currentPage : activePage})
     }
 
     setInitialAuthors = (authorCollection) => {
@@ -47,11 +51,32 @@ class Authors extends React.Component {
 
     }
 
+    filterSearchById = (input) => {
+        console.log(input)
+        return this.state.authors.filter(author => author.id) 
+
+    }
+
+    handleSearchId = (event) => {
+        this.setState({
+            searchInput: event.target.value
+        })
+
+        if(event.target.value === '' ) {
+            this.setState({ renderedAuthors: [...this.state.authors]})
+        } else {
+            this.setState({ renderedAuthors: this.filterSearchById(event.target.value)})
+        }
+
+    }
+
 
     render() {
+
         return (
            <>
            <h1>Author's Catalog</h1>
+            <AuthorsId handleSearchId={this.handleSearchId} />
             <AuthorsSearch handleSearchInput={this.handleSearchInput} />
             <Container>
                    <AuthorsCollection authors={this.state.renderedAuthors} />

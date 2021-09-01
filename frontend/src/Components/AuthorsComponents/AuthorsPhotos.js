@@ -31,7 +31,7 @@ const authorPhoto = [ "https://images2.minutemediacdn.com/image/upload/c_crop,h_
     ]
 
  
- const randomPhoto =  `<img src=${authorPhoto[Math.floor(Math.random()*authorPhoto.length)]} /> `
+ //const randomPhoto =  `<img src=${authorPhoto[Math.floor(Math.random()*authorPhoto.length)]} /> `
 
 
- export default randomPhoto
+ export default authorPhoto

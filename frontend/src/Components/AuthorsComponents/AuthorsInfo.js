@@ -1,5 +1,5 @@
 import React from 'react'
-import randomPhoto from '../AuthorsComponents/AuthorsPhotos'
+import authorPhoto from '../AuthorsComponents/AuthorsPhotos'
 import { Card } from 'semantic-ui-react'
 
 
@@ -18,7 +18,7 @@ class AuthorsInfo extends React.Component {
         return (
           <Card style={layout.card}>
               <Card.Content >
-                {randomPhoto}
+              <img src={authorPhoto[Math.floor(Math.random()*authorPhoto.length)]} />
                   <Card.Header>
                       {first_name} {last_name}
                   </Card.Header>
