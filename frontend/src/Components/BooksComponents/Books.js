@@ -1,6 +1,7 @@
 import React from 'react'
 import BooksSearch from './BooksSearch';
 import BooksCollection from './BooksCollection';
+import BooksCheckout from './BooksCheckout';
 import { Container } from 'semantic-ui-react'
 
 
@@ -9,7 +10,8 @@ class Books extends React.Component {
     state = {
         books: [],
         renderedBooks: [],
-        searchInput: ''
+        searchInput: '',
+        checkOutBooks: []
     }
 
 
@@ -25,7 +27,42 @@ class Books extends React.Component {
             renderedBooks: [...bookCollection]
         })
     }
-    
+
+    handleBookDelete = (deleteBook) => {
+        fetch('http://localhost:9292/books'+deleteBook.div, {
+            method: "DELETE"
+        })
+
+        this.setState({
+            checkOutBooks: this.state.checkOutBooks.filter(x => x !== deleteBook)
+        })
+    }
+
+    handleBookAdd = (e) => {
+        e.preventDefault()
+        fetch('http://localhost:9292/books', this.configObject()) 
+        .then(response => response.json())
+        .then(addedBook => {
+            this.setState({
+                checkOutBooks:[...this.state.checkOutBooks, addedBook]
+            })
+        })
+    }
+
+    configObject = () => {
+        return {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json" 
+            },
+            body: JSON.stringify({
+                
+            })
+        }
+    }
+
+
+   
     
     filterSearchByInput = (input) => {
         console.log(input)
@@ -55,8 +92,12 @@ class Books extends React.Component {
         return (
             <div>
                 <h1>Catalog</h1>
-                <BooksSearch handleSearchInput={this.handleSearchInput} />
+                <Container>
+                    <BooksCheckout />
+                </Container>
+                <br />
                <Container>
+                    <BooksSearch handleSearchInput={this.handleSearchInput} />
                    <BooksCollection books={this.state.renderedBooks} />
                </Container>
             </div>
