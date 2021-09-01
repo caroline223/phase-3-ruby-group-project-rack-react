@@ -1,5 +1,6 @@
 import React from 'react'
 import { Card, Image } from 'semantic-ui-react'
+import bookPhoto from './BooksPhotos'
 import { Link } from 'react-router-dom'
 
 class BooksInfo extends React.Component {
@@ -13,10 +14,10 @@ class BooksInfo extends React.Component {
             }
         }
 
-        const {title, genre, author_name, publishing_date, rating, image_url} = this.props.books
+        const {title, genre, author_name, publishing_date, rating } = this.props.books
         return (
           <Card style={layout.card}>
-              <Image src={image_url} />
+             <Image src={bookPhoto[Math.floor(Math.random()*bookPhoto.length)]} width="360" height="200"/>
               <Card.Content >
                   <Card.Header>
                       {title} <br />
