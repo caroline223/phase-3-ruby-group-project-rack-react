@@ -1,6 +1,5 @@
 import React from 'react'
 import AuthorsSearch from './AuthorsSearch'
-import AuthorsId from './AuthorsId'
 import AuthorsCollection from './AuthorsCollection'
 import { Link } from 'react-router-dom'
 import { Container } from 'semantic-ui-react'
@@ -76,8 +75,8 @@ class Authors extends React.Component {
         return (
            <>
            <h1>Author's Catalog</h1>
-            <AuthorsId handleSearchId={this.handleSearchId} />
             <AuthorsSearch handleSearchInput={this.handleSearchInput} />
+            <br />
             <Container>
                    <AuthorsCollection authors={this.state.renderedAuthors} />
             </Container>
