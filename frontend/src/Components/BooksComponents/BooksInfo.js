@@ -25,7 +25,7 @@ class BooksInfo extends React.Component {
                   <Card.Description>
                       {genre}
                       <br />
-                      Author's Name: {author_name}
+                        Author's Name: {author_name}
                       <br />
                       Date Published: {publishing_date}
                       <br />

@@ -2,6 +2,7 @@ import React from 'react'
 import BooksSearch from './BooksSearch';
 import BooksCollection from './BooksCollection';
 import BooksCheckout from './BooksCheckout';
+import { Link  } from 'react-router-dom';
 import { Container } from 'semantic-ui-react'
 
 
@@ -100,6 +101,8 @@ class Books extends React.Component {
                     <BooksSearch handleSearchInput={this.handleSearchInput} />
                    <BooksCollection books={this.state.renderedBooks} />
                </Container>
+               <p>If your favorite book is not listed here, click below to send us a request!</p>
+                <Link to="/bform">Request A Book</Link>
             </div>
             
         );     
