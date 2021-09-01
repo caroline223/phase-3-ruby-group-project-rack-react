@@ -2,14 +2,11 @@ import React from 'react';
 import { Form } from 'semantic-ui-react';
 
 const defaultState = {
-    url: '',
     first_name: '',
     last_name: '',
     birth_city: '',
     birth_state: '',
     birth_date: '',
-    college: '',
-    degree: '',
 }
 
 
@@ -26,7 +23,7 @@ class AuthorsForm extends React.Component {
     handleFormSubmit = (event) => {
         alert("Your form has been submitted!")
         event.preventDefault()
-        fetch('http://localhost:9292/arequests', this.configObject())
+        fetch('http://localhost:9292/authors', this.configObject())
         .then(response => response.json())
         .then(data => this.state.history.push('/arequests'))
         this.setState(defaultState)
@@ -55,16 +52,6 @@ render() {
             <h1></h1>
             <Form onSubmit={this.handleFormSubmit}>
                 <div > 
-                <Form.Field>
-                    <label >Picture</label>
-                    <input
-                        placeholder="url"
-                        name="url"
-                        value={this.state.url}
-                        onChange={this.handleOnChange}
-                        style={{width: "100%"}}
-                    />
-                </Form.Field>
                 <Form.Field>
                     <label >First Name</label>
                     <input 
@@ -114,32 +101,13 @@ render() {
                         required
                     />
                 </Form.Field>
-                <Form.Field>
-                    <label >College Attended</label>
-                    <input 
-                        placeholder="College"
-                        name="college"
-                        value={this.state.college}
-                        onChange={this.handleOnChange}
-                        style={{width: "100%"}}
-                    />
-                </Form.Field>
-                <Form.Field>
-                    <label>Degree Earned</label>
-                    <input 
-                        placeholder="Degree"
-                        name="degree"
-                        value={this.state.degree}
-                        onChange={this.handleOnChange}
-                        style={{width: "100%"}}
-                    />
-                </Form.Field>
+                
                 </div>
                 <br />
                <Form.Field>
                     <Form.Button >Submit</Form.Button>
-                    <Form.Button ><a href="http://localhost:3000/authors"> Back </a></Form.Button>
                     <Form.Button ><a href="http://localhost:3000/home"> Home </a></Form.Button>
+                    <Form.Button ><a href="http://localhost:3000/authors"> Back </a></Form.Button>
                </Form.Field>
                    
             

@@ -20,10 +20,7 @@ class Authors extends React.Component {
         .then(this.setInitialAuthors);
     }
 
-    setPageNum = (event, { activePage}) => {
-        this.setState({currentPage : activePage})
-    }
-
+   
     setInitialAuthors = (authorCollection) => {
         this.setState({
             authors: [...authorCollection],
@@ -50,24 +47,13 @@ class Authors extends React.Component {
 
     }
 
-    filterSearchById = (input) => {
-        console.log(input)
-        return this.state.authors.filter(author => author.id) 
-
+    handleClickAuthors = event => {
+        fetch('')
+        .then(response => response.json())
+        .then()
     }
 
-    handleSearchId = (event) => {
-        this.setState({
-            searchInput: event.target.value
-        })
-
-        if(event.target.value === '' ) {
-            this.setState({ renderedAuthors: [...this.state.authors]})
-        } else {
-            this.setState({ renderedAuthors: this.filterSearchById(event.target.value)})
-        }
-
-    }
+    
 
 
     render() {
@@ -80,9 +66,8 @@ class Authors extends React.Component {
             <Container>
                    <AuthorsCollection authors={this.state.renderedAuthors} />
             </Container>
-            <p>If your favorite author is not listed here, fill out this request</p>
-            <p>so that we could add them to our library</p>
-            <Link to="/arequests">Request</Link>
+            <p>If your favorite author is not listed here, click below to send us a request!</p>
+            <Link to="/aform">Author's Request</Link>
            </> 
         );     
     }
