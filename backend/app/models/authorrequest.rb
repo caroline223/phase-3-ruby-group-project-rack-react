@@ -1,4 +1,4 @@
-class AuthorRequest < ActiveRecord::Base
 
+class AuthorRequest < ActiveRecord::Base
     
 end
