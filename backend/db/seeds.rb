@@ -7,7 +7,7 @@ require 'faker'
                  birth_state: Faker::Address.state,
                  birth_date: Faker::Date.backward(days: 30000),
                  college: Faker::Educator.university,
-                 degree: Faker::Educator.degree
+                 degree: Faker::Educator.degree,
                 )
 end
 
@@ -19,15 +19,23 @@ end
                 publishing_date: Faker::Date.backward(days: 15000), 
                 author_id: id, 
                 rating: Faker::Number.within(range: 1..10))
+               
 end
 
 1.times do 
-    AuthorRequest.create(first_name: '' ,
-                 last_name: '',
-                 birth_city: '',
-                 birth_state: '',
-                 birth_date: '',
-                 college: '',
-                 degree: ''
+    AuthorRequest.create(
+        full_name: Faker::Name.name,
+        home_town: Faker::Address.city,
+        genre: Faker::Book.genre,
+        birth_date: Faker::Date.backward(days: 30000)
     )
 end
+
+1.times do 
+    BookRequest.create(
+        title: Faker::Book.title,
+        author_name: Faker::Name.name,
+        genre: Faker::Book.genre
+    )
+end
+
