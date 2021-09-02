@@ -19,11 +19,10 @@ class BooksForm extends React.Component{
     }
 
     handleFormSubmit = (event) => {
-        alert("Your form has been submitted!")
         event.preventDefault()
-        fetch('', this.configObject())
+        fetch('http://localhost:9292/brequests', this.configObject())
         .then(response => response.json())
-        .then(data => this.state.history.push('/arequests'))
+        .then(data => this.props.history.push('/brequests'))
         this.setState(defaultState)
     }
 
@@ -60,9 +59,9 @@ render() {
                         style={{width: "100%"}}
                         required
                     />
-                     <label >Last Name</label>
+                     <label >Author's Full Name</label>
                     <input 
-                        placeholder="Author"
+                        placeholder="Author's Full Name"
                         name="author_name"
                         value={this.state.author_name}
                         onChange={this.handleOnChange}
@@ -78,6 +77,7 @@ render() {
                         value={this.state.genre}
                         onChange={this.handleOnChange}
                         style={{width: "100%"}}
+                        required
                     />
                 </Form.Field>
                 </div>
