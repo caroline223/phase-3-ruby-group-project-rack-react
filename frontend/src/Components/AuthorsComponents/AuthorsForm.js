@@ -2,11 +2,10 @@ import React from 'react';
 import { Form } from 'semantic-ui-react';
 
 const defaultState = {
-    first_name: '',
-    last_name: '',
-    birth_city: '',
-    birth_state: '',
+    full_name: '',
+    home_town: '',
     birth_date: '',
+    genre: ''
 }
 
 
@@ -21,11 +20,10 @@ class AuthorsForm extends React.Component {
     }
 
     handleFormSubmit = (event) => {
-        alert("Your form has been submitted!")
         event.preventDefault()
-        fetch('http://localhost:9292/authors', this.configObject())
+        fetch('http://localhost:9292/arequests', this.configObject())
         .then(response => response.json())
-        .then(data => this.state.history.push('/arequests'))
+        .then(data => this.props.history.push('/arequests'))
         this.setState(defaultState)
     }
 
@@ -39,11 +37,7 @@ class AuthorsForm extends React.Component {
             body: JSON.stringify(this.state)
         }
     }
-
-    
- 
-
-    
+   
 
 render() {
     return (
@@ -55,18 +49,9 @@ render() {
                 <Form.Field>
                     <label >First Name</label>
                     <input 
-                        placeholder="First Name (Required)"
-                        name="first_name"
-                        value={this.state.first_name}
-                        onChange={this.handleOnChange}
-                        style={{width: "100%"}}
-                        required
-                    />
-                     <label >Last Name</label>
-                    <input 
-                        placeholder="Last Name (Required)"
-                        name="last_name"
-                        value={this.state.last_name}
+                        placeholder="Full Name (Required)"
+                        name="full_name"
+                        value={this.state.full_name}
                         onChange={this.handleOnChange}
                         style={{width: "100%"}}
                         required
@@ -75,16 +60,9 @@ render() {
                 <Form.Field>
                     <label >Hometown</label>
                     <input 
-                        placeholder="City"
-                        name="birth_city"
-                        value={this.state.birth_city}
-                        onChange={this.handleOnChange}
-                        style={{width: "100%"}}
-                    />
-                    <input 
-                        placeholder="State"
-                        name="birth_state"
-                        value={this.state.birth_state}
+                        placeholder="Hometown"
+                        name="home_town"
+                        value={this.state.home_town}
                         onChange={this.handleOnChange}
                         style={{width: "100%"}}
                     />
@@ -96,6 +74,17 @@ render() {
                         name="birth_date"
                         type="date"
                         value={this.state.birth_date}
+                        onChange={this.handleOnChange}
+                        style={{width: "100%"}}
+                        required
+                    />
+                </Form.Field>
+                <Form.Field>
+                    <label >Style of Genre</label>
+                    <input 
+                        placeholder="Genre (Required)"
+                        name="genre"
+                        value={this.state.genre}
                         onChange={this.handleOnChange}
                         style={{width: "100%"}}
                         required

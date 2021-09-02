@@ -14,20 +14,18 @@ class AuthorsInfo extends React.Component {
             }
         }
 
-        const {first_name, last_name, birth_date, college, degree, birth_city, birth_state } = this.props.authors
+        const {author_name, birth_date, college, degree, home_town} = this.props.authors
         return (
           <Card style={layout.card}>
-              <Image src={authorPhoto[Math.floor(Math.random()*authorPhoto.length)]} width="360" height="200"/>
+              <Image src={authorPhoto[Math.floor(Math.random()*authorPhoto.length)]} width="300" height="200"/>
               <Card.Content >
                   <Card.Header>
-                      {first_name} {last_name}
+                      {author_name}
                   </Card.Header>
                   <Card.Description>
                       {birth_date}
                       <br />
-                      {birth_city}
-                      <br />
-                      {birth_state}
+                      {home_town}
                       <br />
                       {college}
                       <br />
