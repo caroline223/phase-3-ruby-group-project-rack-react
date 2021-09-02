@@ -18,7 +18,14 @@ class Application
       
     elsif @req.path.match(/books/) && @req.get?
       return [200, { 'Content-Type' => 'application/json' }, [ Book.all_with_authors.to_json ]]
+
+    elsif @req.path.match(/books/) && @req.post?
+      data = JSON.parse  @req.body.read 
+      book =  Book.create(data)
+      return [200, { 'Content-Type' => 'application/json' }, [book.to_json ]]
      
+
+
       
     elsif @req.path.match(/authors/) && @req.get? && params_id
       author = Author.find_by_id(params_id)
@@ -36,33 +43,36 @@ class Application
       return [200, { 'Content-Type' => 'application/json' }, [ Author.all_with_books.to_json ]]
 
     
+    elsif @req.path.match(/authors/) && @req.post?
+        data = JSON.parse  @req.body.read 
+        author =  Author.create(data)
+        return [200, { 'Content-Type' => 'application/json' }, [author.to_json ]]
   
+
+
+    elsif @req.path.match(/arequests/) && @req.get?
+      author = AuthorRequest.all
+      return [200, { 'Content-Type' => 'application/json' }, [ author.to_json ]]
   
-
-
-
       
-  
-    elsif @req.path.match(/authorrequests/) && @req.get?
-      author_requests = AuthorRequest.all
-      return [200, { 'Content-Type' => 'application/json' }, [ author_requests.to_json ]]
-    
-   
-    elsif @req.path.match(/authorrequests/) && @req.post?
-      data = JSON.parse  @req.body.read 
-      author_request =  AuthorRequest.create(data)
-      return [200, { 'Content-Type' => 'application/json' }, [author_request.to_json ]]
+    elsif @req.path.match(/arequests/) && @req.post?
+        data = JSON.parse  @req.body.read 
+        author_request =  AuthorRequest.create(data)
+        return [200, { 'Content-Type' => 'application/json' }, [author_request.to_json ]]
 
-    elsif @req.path.match(/bform/) && @req.post?
-      data = JSON.parse  @req.body.read #takes sthg that is json and parse it and turn it into ruby
-      book_request = BookRequest.create(data)
-      return [200, { 'Content-Type' => 'application/json' }, [ book_request.to_json ]]
+
+      elsif @req.path.match(/brequests/) && @req.get?
+        book = BookRequest.all
+        return [200, { 'Content-Type' => 'application/json' }, [ book.to_json ]]
     
-    
-    elsif @req.path.match(/books/) && @req.post?
-     data = JSON.parse  @req.body.read #takes sthg that is json and parse it and turn it into ruby
-     book = Book.create(data)
-     return [200, { 'Content-Type' => 'application/json' }, [ book.to_json ]]
+        
+      elsif @req.path.match(/brequests/) && @req.post?
+          data = JSON.parse  @req.body.read 
+          book_request =  BookRequest.create(data)
+          return [200, { 'Content-Type' => 'application/json' }, [book_request.to_json ]]
+
+
+
 
 
     elsif @req.delete?
