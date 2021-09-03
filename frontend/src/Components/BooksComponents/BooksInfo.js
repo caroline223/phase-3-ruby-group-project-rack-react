@@ -14,7 +14,7 @@ class BooksInfo extends React.Component {
             }
         }
 
-        const {title, genre, author_name, publishing_date, rating} = this.props.books
+        const {title, genre, author_name, publishing_date, rating, author_id} = this.props.books
         return (
           <Card style={layout.card}>
              <Image src={bookPhoto[Math.floor(Math.random()*bookPhoto.length)]} width="300" height="200"/>
@@ -25,7 +25,7 @@ class BooksInfo extends React.Component {
                   <Card.Description>
                       {genre}
                       <br />
-                      <Link>Author's Name: {author_name}</Link>   
+                      <Link to={`authors/${author_id}`}>Author's Name: {author_name}</Link>   
                       <br />
                       Date Published: {publishing_date}
                       <br />
