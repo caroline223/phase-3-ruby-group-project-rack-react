@@ -12,7 +12,6 @@ class Books extends React.Component {
         books: [],
         renderedBooks: [],
         searchInput: '',
-        checkOutBooks: []
     }
 
 
@@ -29,41 +28,7 @@ class Books extends React.Component {
         })
     }
 
-    handleBookDelete = (deleteBook) => {
-        fetch('http://localhost:9292/books'+deleteBook.div, {
-            method: "DELETE"
-        })
-
-        this.setState({
-            checkOutBooks: this.state.checkOutBooks.filter(x => x !== deleteBook)
-        })
-    }
-
-    handleBookAdd = (e) => {
-        e.preventDefault()
-        fetch('http://localhost:9292/books', this.configObject()) 
-        .then(response => response.json())
-        .then(addedBook => {
-            this.setState({
-                checkOutBooks:[...this.state.checkOutBooks, addedBook]
-            })
-        })
-    }
-
-    configObject = () => {
-        return {
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/json" 
-            },
-            body: JSON.stringify({
-                
-            })
-        }
-    }
-
-
-   
+    
     
     filterSearchByInput = (input) => {
         console.log(input)
@@ -102,7 +67,7 @@ class Books extends React.Component {
                    <BooksCollection books={this.state.renderedBooks} />
                </Container>
                <p>If your favorite book is not listed here, click below to send us a request!</p>
-                <Link to="/bform">Request A Book</Link>
+                <Link to="/brequests">Request A Book</Link>
             </div>
             
         );     

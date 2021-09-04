@@ -1,9 +1,9 @@
 import React from 'react'
 
-class IndividualBook extends React.Component {
+class IndividualBooks extends React.Component {
 
     state = {
-        book: null
+        book: {}
     }
 
     componentDidMount(){
@@ -36,4 +36,4 @@ class IndividualBook extends React.Component {
     }
 }
 
-export default IndividualBook;
+export default IndividualBooks;

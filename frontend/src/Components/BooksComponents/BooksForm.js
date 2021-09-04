@@ -20,6 +20,7 @@ class BooksForm extends React.Component{
 
     handleFormSubmit = (event) => {
         event.preventDefault()
+        alert("Your form has been successfully submitted!")
         fetch('http://localhost:9292/brequests', this.configObject())
         .then(response => response.json())
         .then(data => this.props.history.push('/brequests'))
@@ -36,10 +37,6 @@ class BooksForm extends React.Component{
             body: JSON.stringify(this.state)
         }
     }
-
-    
- 
-
     
 
 render() {
