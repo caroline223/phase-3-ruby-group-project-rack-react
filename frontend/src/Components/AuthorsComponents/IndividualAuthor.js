@@ -1,9 +1,11 @@
 import React from 'react'
+import { Card, Image } from 'semantic-ui-react'
+import authorPhoto from './AuthorsPhotos'
 
 class IndividualAuthor extends React.Component {
 
     state = {
-        author: []
+        author: null
     }
 
     componentDidMount(){
@@ -16,21 +18,44 @@ class IndividualAuthor extends React.Component {
 
 
     renderInfo = () => {
-       this.state.author.map(a => {
-          return <ul>
-              <li>a.author_name</li> 
-              <li>a.birth_date</li>
-              <li>a.home_town</li>
-              <li>a.college</li>
-              <li>a.degree</li>
-          </ul>
-       })
+       const {author_name, birth_date, home_town, college, degree} = this.state.author
+
+       const layout = {
+        card : {
+            opacity: "0.8",
+            borderRadius: "40px"
+        }
+    }
+          return (
+              <>
+              <Card style={layout.card}>
+                <Image src={authorPhoto[Math.floor(Math.random()*authorPhoto.length)]} width="300" height="200"/>
+                    <Card.Content>
+                        <Card.Header>
+                            {author_name}
+                        </Card.Header>
+                        <Card.Description>
+                            {birth_date}
+                            <br />
+                            {home_town}
+                            <br />
+                            {college}
+                            <br />
+                            {degree}
+                        </Card.Description>
+                    </Card.Content>
+             </Card>
+              </>
+          )
+          
+             
+    
     }
 
     render(){
         return(
             <div>
-                {this.renderInfo()}
+              { this.state.author ? this.renderInfo() : <p>Loading...</p> }
             </div>
         )
     }
