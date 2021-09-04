@@ -1,5 +1,6 @@
 import React from 'react';
-import { Form } from 'semantic-ui-react';
+import { Form, Message } from 'semantic-ui-react';
+
 
 const defaultState = {
     full_name: '',
@@ -8,11 +9,9 @@ const defaultState = {
     genre: ''
 }
 
-
 class AuthorsForm extends React.Component {
 
-    state = {...defaultState}
-
+    state = {...defaultState }
 
     handleOnChange = (event) => {
         console.log(this.state)
@@ -20,11 +19,12 @@ class AuthorsForm extends React.Component {
     }
 
     handleFormSubmit = (event) => {
-        event.preventDefault()
+        event.preventDefault() 
         fetch('http://localhost:9292/arequests', this.configObject())
         .then(response => response.json())
         .then(data => this.props.history.push('/arequests'))
-        this.setState(defaultState)
+        this.setState( defaultState ) 
+        alert("Your form has been successfully submitted!")
     }
 
     configObject = () => {
@@ -60,7 +60,7 @@ render() {
                 <Form.Field>
                     <label >Hometown</label>
                     <input 
-                        placeholder="Hometown"
+                        placeholder="City, State"
                         name="home_town"
                         value={this.state.home_town}
                         onChange={this.handleOnChange}
@@ -94,12 +94,11 @@ render() {
                 </div>
                 <br />
                <Form.Field>
-                    <Form.Button >Submit</Form.Button>
+                    <Form.Button>Submit</Form.Button>
+                    <br />
                     <Form.Button ><a href="http://localhost:3000/home"> Home </a></Form.Button>
                     <Form.Button ><a href="http://localhost:3000/authors"> Back </a></Form.Button>
                </Form.Field>
-                   
-            
             </Form>
         </div>
     )

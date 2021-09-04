@@ -30,7 +30,7 @@ class Authors extends React.Component {
 
     filterSearchByInput = (input) => {
         console.log(input)
-        return this.state.authors.filter(author => author.last_name.toLowerCase().includes(input.toLowerCase())) 
+        return this.state.authors.filter(author => author.author_name.toLowerCase().includes(input.toLowerCase())) 
 
     }
 
@@ -67,7 +67,7 @@ class Authors extends React.Component {
                    <AuthorsCollection authors={this.state.renderedAuthors} />
             </Container>
             <p>If your favorite author is not listed here, click below to send us a request!</p>
-            <Link to="/aform">Author's Request</Link>
+            <Link to="/arequests">Author's Request</Link>
            </> 
         );     
     }

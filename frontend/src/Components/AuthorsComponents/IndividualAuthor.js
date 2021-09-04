@@ -2,6 +2,8 @@ import React from 'react'
 import { Card, Image } from 'semantic-ui-react'
 import authorPhoto from './AuthorsPhotos'
 
+const gifPic = 'https://media3.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif?cid=790b761103f7276c9f0dd8c0fe8c4837a39afe6a68edade0&rid=giphy.gif&ct=g'
+
 class IndividualAuthor extends React.Component {
 
     state = {
@@ -55,7 +57,7 @@ class IndividualAuthor extends React.Component {
     render(){
         return(
             <div>
-              { this.state.author ? this.renderInfo() : <p>Loading...</p> }
+              { this.state.author ? this.renderInfo() : <Image src={gifPic} /> }
             </div>
         )
     }
