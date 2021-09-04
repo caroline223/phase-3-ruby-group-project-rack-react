@@ -46,13 +46,6 @@ class Authors extends React.Component {
         }
 
     }
-
-    handleClickAuthors = event => {
-        fetch('')
-        .then(response => response.json())
-        .then()
-    }
-
     
 
 
