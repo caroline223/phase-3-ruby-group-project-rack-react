@@ -4,6 +4,7 @@ import BooksCollection from './BooksCollection';
 import BooksCheckout from './BooksCheckout';
 import { Link  } from 'react-router-dom';
 import { Container } from 'semantic-ui-react'
+import NavBar from '../NavBar';
 
 
 class Books extends React.Component {
@@ -57,6 +58,7 @@ class Books extends React.Component {
         
         return (
             <div>
+                 <NavBar />
                 <h1>Catalog</h1>
                 <Container>
                     <BooksCheckout />

@@ -3,7 +3,7 @@ import React from 'react'
 class IndividualBooks extends React.Component {
 
     state = {
-        book: {}
+        books: {}
     }
 
     componentDidMount(){
@@ -16,7 +16,7 @@ class IndividualBooks extends React.Component {
 
 
     renderInfo = () => {
-       const {title, genre, rating, author_name, publishing_date} = this.state.book
+       const {title, genre, rating, author_name, publishing_date} = this.state.books
           return <ul>
               <li>{title}</li> 
               <li>{author_name}</li>

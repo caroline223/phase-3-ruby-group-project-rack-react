@@ -3,6 +3,7 @@ import AuthorsSearch from './AuthorsSearch'
 import AuthorsCollection from './AuthorsCollection'
 import { Link } from 'react-router-dom'
 import { Container } from 'semantic-ui-react'
+import NavBar from '../NavBar'
 
 
 class Authors extends React.Component {
@@ -53,6 +54,7 @@ class Authors extends React.Component {
 
         return (
            <>
+           <NavBar />
            <h1>Author's Catalog</h1>
             <AuthorsSearch handleSearchInput={this.handleSearchInput} />
             <br />
