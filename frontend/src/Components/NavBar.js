@@ -18,8 +18,8 @@ function NavBar(props) {
     return (
         <nav style={layout.nav}>
              <Link to="/" >Home</Link>
-            <Link to="/books">Books</Link>
-            <Link to="/authors">Authors</Link>
+             <Link to="/books">Books</Link>
+             <Link to="/authors">Authors</Link>
         </nav>
     )
 
