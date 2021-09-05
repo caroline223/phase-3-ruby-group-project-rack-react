@@ -43,7 +43,6 @@ render() {
     return (
         <div >
             <br />
-            <h1></h1>
             <Form onSubmit={this.handleFormSubmit}>
                 <div > 
                 <Form.Field>

@@ -7,7 +7,7 @@ class BooksCollection extends React.Component {
 
     render() {
         return (
-            <Card.Group itemsPerRow={4}>
+            <Card.Group itemsPerRow={5}>
                 {this.props.books.map((bookObj, id) => <BooksInfo key={id} books={bookObj} />)}
             </Card.Group>
         )
