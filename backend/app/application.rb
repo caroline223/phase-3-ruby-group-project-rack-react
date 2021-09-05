@@ -4,17 +4,37 @@ class Application
     resp = Rack::Response.new
     @req = Rack::Request.new(env)
 
-    if @req.path.match(/books/) && @req.get? && params_id
-      book = Book.find_by_id(params_id)
-      book_info = {
-                title: book.title,
-                genre: book.genre,
-                rating: book.rating,
-                author_name: book.author.full_name,
-                publishing_date: book.publishing_date
-               
+  if @req.path.match(/authors/) && @req.get? && params_id
+    author = Author.find_by_id(params_id)
+    author_info = {
+              author_name: author.full_name,
+              birth_date: author.birth_date,
+              home_town: author.home_town,
+              college: author.college,
+              degree: author.degree
+    }
+    return [200, { 'Content-Type' => 'application/json' }, [ author_info.to_json ]] 
+
+  
+  elsif @req.path.match(/authors/) && @req.get?
+    return [200, { 'Content-Type' => 'application/json' }, [ Author.all_with_books.to_json ]]
+
+  
+  elsif @req.path.match(/authors/) && @req.post?
+      data = JSON.parse  @req.body.read 
+      author =  Author.create(data)
+      return [200, { 'Content-Type' => 'application/json' }, [author.to_json ]]
+
+
+   
+    elsif @req.path.match(/books/) && @req.get? && params_id
+      author = Author.find_by_id(params_id)
+      author_and_books = {
+        name: author.full_name,
+        books: author.books 
       }
-      return [200, { 'Content-Type' => 'application/json' }, [ book_info.to_json ]] 
+      return [200, { 'Content-Type' => 'application/json' }, [ author_and_books.to_json ]] 
+
       
     elsif @req.path.match(/books/) && @req.get?
       return [200, { 'Content-Type' => 'application/json' }, [ Book.all_with_authors.to_json ]]
@@ -24,31 +44,7 @@ class Application
       book =  Book.create(data)
       return [200, { 'Content-Type' => 'application/json' }, [book.to_json ]]
      
-
-
       
-    elsif @req.path.match(/authors/) && @req.get? && params_id
-      author = Author.find_by_id(params_id)
-      author_info = {
-                author_name: author.full_name,
-                birth_date: author.birth_date,
-                home_town: author.home_town,
-                college: author.college,
-                degree: author.degree
-      }
-      return [200, { 'Content-Type' => 'application/json' }, [ author_info.to_json ]] 
-
-    
-    elsif @req.path.match(/authors/) && @req.get?
-      return [200, { 'Content-Type' => 'application/json' }, [ Author.all_with_books.to_json ]]
-
-    
-    elsif @req.path.match(/authors/) && @req.post?
-        data = JSON.parse  @req.body.read 
-        author =  Author.create(data)
-        return [200, { 'Content-Type' => 'application/json' }, [author.to_json ]]
-  
-
 
     elsif @req.path.match(/arequests/) && @req.get?
       author = AuthorRequest.all
@@ -92,5 +88,10 @@ class Application
   def params_id
     @req.path_info[/\d+/]
   end
+
+
+  
+
+  
 
 end
