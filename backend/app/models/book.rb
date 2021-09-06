@@ -6,16 +6,22 @@ class Book < ActiveRecord::Base
     
     self.all.map do |book|
         { 
+        id: book.id,
         title: book.title,
         genre: book.genre,
         author_name: book.author.full_name,
         publishing_date: book.publishing_date,
         rating: book.rating,
         image_url: book.image_url,
-        author_id: book.author_id
+        author_id: book.author_id, 
         }
      end
+
    end
+
+   
+
+   
    
 
 end
