@@ -10,14 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_02_051501) do
-
-  create_table "author_requests", force: :cascade do |t|
-    t.string "full_name"
-    t.string "home_town"
-    t.date "birth_date"
-    t.string "genre"
-  end
+ActiveRecord::Schema.define(version: 2021_09_06_190530) do
 
   create_table "authors", force: :cascade do |t|
     t.string "first_name"
@@ -30,12 +23,6 @@ ActiveRecord::Schema.define(version: 2021_09_02_051501) do
     t.string "image_url"
   end
 
-  create_table "book_requests", force: :cascade do |t|
-    t.string "title"
-    t.string "author_name"
-    t.string "genre"
-  end
-
   create_table "books", force: :cascade do |t|
     t.string "title"
     t.string "genre"
@@ -43,6 +30,15 @@ ActiveRecord::Schema.define(version: 2021_09_02_051501) do
     t.date "publishing_date"
     t.integer "rating"
     t.string "image_url"
+  end
+
+  create_table "novels", force: :cascade do |t|
+    t.string "image_url"
+    t.string "title"
+    t.string "author_name"
+    t.string "genre"
+    t.string "publishing_date"
+    t.integer "rating"
   end
 
 end
