@@ -1,10 +1,32 @@
 import React from 'react'
-import { Card, Image } from 'semantic-ui-react'
+import { Card, Image, Button } from 'semantic-ui-react'
 import bookPhoto from './BooksPhotos'
 import { Link } from 'react-router-dom'
 
 class BooksInfo extends React.Component {
 
+    getBooks(){
+        fetch(`http://localhost:9292/books/`)
+       .then((result) => {
+           result.json().then((resp) => {
+               console.warn(resp)
+           })
+       })
+    }
+    
+    
+    deleteBook(id){
+       fetch(`http://localhost:9292/books/${id}`, {
+           method: 'DELETE'
+       })
+       .then((result) => {
+           result.json().then((resp) => {
+               console.warn(resp)
+               this.getBooks()
+           })
+       })
+    }
+ 
     render() {
 
         const layout = {
@@ -14,13 +36,13 @@ class BooksInfo extends React.Component {
             }
         }
 
-        const {title, genre, author_name, publishing_date, rating, author_id} = this.props.books
+        const {id, title, genre, author_name, publishing_date, rating, author_id} = this.props.books
         return (
-          <Card style={layout.card}>
+          <Card style={layout.card} >
              <Image src={bookPhoto[Math.floor(Math.random()*bookPhoto.length)]} width="300" height="200"/>
               <Card.Content >
                   <Card.Header>
-                      {title} <br />
+                      {title} 
                   </Card.Header>
                   <Card.Description>
                       {genre}
@@ -31,8 +53,9 @@ class BooksInfo extends React.Component {
                       <br />
                       Rating: {rating}/10
                       <br />
-                      <button>Checkout</button>
                   </Card.Description>
+                  <br />
+                  <Button onClick={() => this.deleteBook(id)}>Checked-Out</Button>
               </Card.Content>
           </Card>
         )

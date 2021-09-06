@@ -1,9 +1,7 @@
 import React from 'react'
 import BooksSearch from './BooksSearch';
 import BooksCollection from './BooksCollection';
-import BooksCheckout from './BooksCheckout';
 import { Link  } from 'react-router-dom';
-import { Container } from 'semantic-ui-react'
 import NavBar from '../NavBar';
 
 
@@ -14,7 +12,6 @@ class Books extends React.Component {
         renderedBooks: [],
         searchInput: '',
     }
-
 
     componentDidMount() {
         fetch('http://localhost:9292/books')
@@ -29,8 +26,6 @@ class Books extends React.Component {
         })
     }
 
-    
-    
     filterSearchByInput = (input) => {
         console.log(input)
         return this.state.books.filter(book => book.genre.toLowerCase().includes(input.toLowerCase())) 
@@ -51,23 +46,16 @@ class Books extends React.Component {
     }
 
    
-
-
     render() {
         return (
             <div>
                  <NavBar />
                 <h1>Catalog</h1>
-                <Container>
-                    <BooksCheckout />
-                </Container>
+                <Link to="/brequests">Add A Book</Link>
                 <br />
-               <Container>
-                    <BooksSearch handleSearchInput={this.handleSearchInput} />
-                   <BooksCollection books={this.state.renderedBooks} />
-               </Container>
-               <p>If your favorite book is not listed here, click below to send us a request!</p>
-                <Link to="/brequests">Request A Book</Link>
+               <BooksSearch handleSearchInput={this.handleSearchInput} />
+               <BooksCollection books={this.state.renderedBooks} />
+               <br />  
             </div>
             
         );     
