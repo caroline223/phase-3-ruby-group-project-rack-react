@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom'
 
 class AuthorsInfo extends React.Component {
 
+
+
     render() {
 
         const layout = {
@@ -15,14 +17,15 @@ class AuthorsInfo extends React.Component {
             }
         }
 
-        const {author_name, birth_date, college, degree, home_town} = this.props.authors
+        const {id, author_name, birth_date, college, degree, home_town} = this.props.authors
+       
        
         return (
           <Card style={layout.card}>
               <Image src={authorPhoto[Math.floor(Math.random()*authorPhoto.length)]} width="300" height="200"/>
               <Card.Content >
                   <Card.Header>
-                      <Link >{author_name}</Link>
+                      <Link to={`books/${id}`}>{author_name}</Link>
                   </Card.Header>
                   <Card.Description>
                       {birth_date}

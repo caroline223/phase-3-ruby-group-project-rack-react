@@ -3,10 +3,14 @@ import { Form } from 'semantic-ui-react';
 
 
 const defaultState = {
-    full_name: '',
-    home_town: '',
+    first_name: '',
+    last_name: '',
+    birth_city:'',
+    birth_state: '',
     birth_date: '',
-    genre: ''
+    college: '',
+    degree: '',
+    image_url: ''
 }
 
 class AuthorsForm extends React.Component {
@@ -20,9 +24,9 @@ class AuthorsForm extends React.Component {
 
     handleFormSubmit = (event) => {
         event.preventDefault() 
-        fetch('http://localhost:9292/arequests', this.configObject())
+        fetch('http://localhost:9292/authors', this.configObject())
         .then(response => response.json())
-        .then(data => this.props.history.push('/arequests'))
+        .then(data => this.props.history.push('/authors'))
         this.setState( defaultState ) 
         alert("Your form has been successfully submitted!")
     }
@@ -43,15 +47,33 @@ render() {
     return (
         <div >
             <br />
-            <h1></h1>
             <Form onSubmit={this.handleFormSubmit}>
                 <div > 
                 <Form.Field>
-                    <label >First Name</label>
+                <label>Image URL</label>
                     <input 
-                        placeholder="Full Name (Required)"
-                        name="full_name"
-                        value={this.state.full_name}
+                        placeholder="URL"
+                        name="image_url"
+                        value={this.state.image_url}
+                        onChange={this.handleOnChange}
+                        style={{width: "100%"}}
+                        required
+                    />
+                </Form.Field>
+                <Form.Field> 
+                    <label >Full Name</label>
+                    <input 
+                        placeholder="First Name"
+                        name="first_name"
+                        value={this.state.first_name}
+                        onChange={this.handleOnChange}
+                        style={{width: "100%"}}
+                        required
+                    />
+                     <input 
+                        placeholder="Last Name"
+                        name="last_name"
+                        value={this.state.last_name}
                         onChange={this.handleOnChange}
                         style={{width: "100%"}}
                         required
@@ -60,17 +82,26 @@ render() {
                 <Form.Field>
                     <label >Hometown</label>
                     <input 
-                        placeholder="City, State"
-                        name="home_town"
-                        value={this.state.home_town}
+                        placeholder="City"
+                        name="birth_city"
+                        value={this.state.birth_city}
                         onChange={this.handleOnChange}
                         style={{width: "100%"}}
+                        required
+                    />
+                    <input 
+                        placeholder="State"
+                        name="birth_state"
+                        value={this.state.birth_state}
+                        onChange={this.handleOnChange}
+                        style={{width: "100%"}}
+                        required
                     />
                 </Form.Field>
                 <Form.Field>
                     <label >Birthday</label>
                     <input 
-                        placeholder="Birthday (Required)"
+                        placeholder="Birthday"
                         name="birth_date"
                         type="date"
                         value={this.state.birth_date}
@@ -80,11 +111,19 @@ render() {
                     />
                 </Form.Field>
                 <Form.Field>
-                    <label >Style of Genre</label>
+                    <label >Education</label>
                     <input 
-                        placeholder="Genre (Required)"
-                        name="genre"
-                        value={this.state.genre}
+                        placeholder="College Attended"
+                        name="college"
+                        value={this.state.college}
+                        onChange={this.handleOnChange}
+                        style={{width: "100%"}}
+                        required
+                    />
+                     <input 
+                        placeholder="Degree Obtained"
+                        name="degree"
+                        value={this.state.degree}
                         onChange={this.handleOnChange}
                         style={{width: "100%"}}
                         required
