@@ -1,7 +1,6 @@
 import React from 'react'
 import NewBookCollection from './NewBookCollection';
-import NavBar from '../NavBar'
-
+import { Container } from 'semantic-ui-react';
 
 class NewBooks extends React.Component {
     
@@ -26,8 +25,11 @@ class NewBooks extends React.Component {
     render() {
         return (
             <>
-            <NavBar />
+            
+           <Container>
                 <NewBookCollection novels={this.state.novels} />
+           </Container>
+                
             </> 
         )
     }

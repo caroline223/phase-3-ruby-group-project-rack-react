@@ -8,7 +8,7 @@ class NewBookCollection extends React.Component {
     render() {
         return (
             <div>
-                <Card.Group itemsPerRow={3}>
+                <Card.Group itemsPerRow={4}>
                     {this.props.novels.map((novelObj, id) => <NewBooksInfo key={id} novels={novelObj} />)}
                 </Card.Group>
             </div>
