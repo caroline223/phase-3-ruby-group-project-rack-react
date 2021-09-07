@@ -30,12 +30,16 @@ class IndividualAuthor extends React.Component {
     }
           return (
               <>
-              <Card style={layout.card}>
-                <Image src={authorPhoto[Math.floor(Math.random()*authorPhoto.length)]} width="300" height="200"/>
-                    <Card.Content>
-                        <Card.Header>
-                            {author_name}
-                        </Card.Header>
+              <br />
+              <div className="h1">Author's Corner</div>
+              <br /> <br /> <br /> <br /> <br /> <br />
+              <div className="cardPosition">
+                <Card style={layout.card}>
+                    <Image src={authorPhoto[Math.floor(Math.random()*authorPhoto.length)]} width="300" height="200"/>
+                    <Card.Content className="bookDescription">
+                         <header>
+                            {author_name} 
+                        </header>
                         <Card.Description>
                             {birth_date}
                             <br />
@@ -44,10 +48,16 @@ class IndividualAuthor extends React.Component {
                             {college}
                             <br />
                             {degree}
-                        </Card.Description>
-                    </Card.Content>
-                    <Button><a href="http://localhost:3000/books">Back</a></Button>
-             </Card>
+                            </Card.Description>
+                        </Card.Content>
+                        <Card.Content>
+                            <div className="buttonPosition">
+                                <Button><a href="http://localhost:3000/books">Back</a></Button>
+                            </div>
+                        </Card.Content>
+                    </Card>
+                </div>
+              
               </>
           )
           
@@ -58,7 +68,7 @@ class IndividualAuthor extends React.Component {
     render(){
         return(
             <div>
-              { this.state.author ? this.renderInfo() : <Image src={gifPic} /> }
+              { this.state.author ? this.renderInfo() : <Image src={gifPic} className="cardPosition"/> }
             </div>
         )
     }
