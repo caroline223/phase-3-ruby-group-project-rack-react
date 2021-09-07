@@ -66,10 +66,10 @@ class Books extends React.Component {
                 <div className="h1">
                     Your Library
                  </div>
-                 <br /><br /><br />
-                    <div className="linkPosition">
-                        <Link to="/brequests" className="newTitle">Upload A Book</Link>
-                    </div>
+                    <br /><br /><br />
+                <div className="linkPosition">
+                    <Link to="/brequests" className="newTitle">Upload A Book</Link>
+                </div>
                         <br /><br /><br />
                     <NewBooks />
                 </Container>

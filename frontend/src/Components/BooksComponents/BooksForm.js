@@ -46,8 +46,9 @@ render() {
     return (
         <div >
             <br />
+            <div className="h1">Book Submission</div>
             <Form onSubmit={this.handleFormSubmit}>
-                <div > 
+                <div className="formField"> 
                 <Form.Field>
                     <label>Title</label>
                     <input 
@@ -105,9 +106,11 @@ render() {
                 </div>
                 <br />
                <Form.Field>
-                    <Form.Button >Submit</Form.Button>
-                     <Form.Button ><a href="http://localhost:3000/home"> Home </a></Form.Button>
-                    <Form.Button ><a href="http://localhost:3000/books"> Back </a></Form.Button>
+                   <div className="formButtonPosition">
+                        <Form.Button >Submit</Form.Button>
+                        <Form.Button ><a href="http://localhost:3000/"> Home </a></Form.Button>
+                        <Form.Button ><a href="http://localhost:3000/books"> Back </a></Form.Button>
+                    </div>   
                </Form.Field>
                    
             
