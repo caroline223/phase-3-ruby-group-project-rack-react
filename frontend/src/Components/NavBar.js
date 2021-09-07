@@ -11,15 +11,15 @@ function NavBar(props) {
             alignItems: "flex-end",
             height: "30px",
             padding: "35px",
-            marginBottom: "20px",
+            marginBottom: "30px",
         }
     };
 
     return (
-        <nav style={layout.nav}>
-             <Link to="/" >Home</Link>
-             <Link to="/books">Books</Link>
-             <Link to="/authors">Authors</Link>
+        <nav style={layout.nav} className="navBackground">
+             <Link to="/" className="navTitle">Home</Link>
+             <Link to="/books" className="navTitle">Books</Link>
+             <Link to="/brequests" className="navTitle">Add A Book</Link>
         </nav>
     )
 
