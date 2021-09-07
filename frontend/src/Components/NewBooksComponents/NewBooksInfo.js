@@ -41,19 +41,19 @@ class NewBooksInfo extends React.Component{
               <Card color='olive' style={layout.card} >
                  <Image src={bookPhoto[Math.floor(Math.random()*bookPhoto.length)]} width="300" height="200"/>
                   <Card.Content className="bookDescription">
-                  <header>
-                  {title} 
-                  </header>
+                    <header>
+                    {title} 
+                    </header>
                   <Card.Description>
                       <br />
-                          {genre}
-                          <br />
-                         {author_name}
-                          <br />
-                          Date Published: {publishing_date}
-                          <br />
-                          Rating: {rating}/10
-                          <br />
+                        {genre}
+                      <br />
+                        {author_name}
+                      <br />
+                        Date Published: {publishing_date}
+                      <br />
+                        Rating: {rating}/10
+                      <br />
                       </Card.Description>
                       <br />
                   </Card.Content>
