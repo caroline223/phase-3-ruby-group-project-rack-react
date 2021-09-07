@@ -4,6 +4,7 @@ import bookPhoto from './BooksPhotos'
 import { Link } from 'react-router-dom'
 
 class BooksInfo extends React.Component {
+    
 
     getBooks(){
         fetch(`http://localhost:9292/books/`)
@@ -27,9 +28,10 @@ class BooksInfo extends React.Component {
        })
     }
  
+
     render() {
 
-        const layout = {
+         const layout = {
             card : {
                 opacity: "0.8",
                 borderRadius: "40px"
@@ -38,27 +40,34 @@ class BooksInfo extends React.Component {
 
         const {id, title, genre, author_name, publishing_date, rating, author_id} = this.props.books
         return (
-          <Card style={layout.card} >
+          <Card style={layout.card} color='olive'>
              <Image src={bookPhoto[Math.floor(Math.random()*bookPhoto.length)]} width="300" height="200"/>
-              <Card.Content >
-                  <Card.Header>
-                      {title} 
-                  </Card.Header>
+              <Card.Content className="bookDescription">
+                  <header>
+                  {title} 
+                  </header>
                   <Card.Description>
+                      <br />
                       {genre}
-                      <br />
-                      <Link to={`authors/${author_id}`}>Author's Name: {author_name}</Link>   
-                      <br />
-                      Date Published: {publishing_date}
-                      <br />
-                      Rating: {rating}/10
-                      <br />
-                  </Card.Description>
-                  <br />
-                  <Button onClick={() => this.deleteBook(id)}>Checked-Out</Button>
-              </Card.Content>
+                      <div>
+                        <Link to={`authors/${author_id}`}>Author's Name: {author_name}</Link>   
+                      </div>
+                     <div>
+                        Date Published: {publishing_date}
+                     </div>
+                      <div>
+                        Rating: {rating}/10
+                      </div>
+                  </Card.Description>    
+                </Card.Content>
+                <Card.Content>
+                      <div className="buttonPosition">
+                        <Button onClick={()=>this.deleteBook(id)}>Not Interested</Button>
+                      </div>  
+                </Card.Content>
           </Card>
         )
+        
     }
 }
 

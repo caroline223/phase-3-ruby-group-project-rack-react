@@ -2,9 +2,12 @@ import React from 'react'
 import { Form } from 'semantic-ui-react'
 
 const defaultState = {
+    image_url: null,
     title: '',
+    genre: '',
+    publishing_date: '',
+    rating: '',
     author_name: '',
-    genre: ''
 }
 
 
@@ -46,7 +49,7 @@ render() {
             <Form onSubmit={this.handleFormSubmit}>
                 <div > 
                 <Form.Field>
-                    <label >Title</label>
+                    <label>Title</label>
                     <input 
                         placeholder="Title"
                         name="title"
@@ -56,14 +59,25 @@ render() {
                         required
                     />
                      <label >Author's Full Name</label>
-                    <input 
-                        placeholder="Author's Full Name"
+                     <input 
+                        placeholder="Full Name"
                         name="author_name"
                         value={this.state.author_name}
                         onChange={this.handleOnChange}
                         style={{width: "100%"}}
                         required
                     />
+                     <label>Rating</label>
+                    <input 
+                        placeholder="Enter a number from 1 - 10"
+                        name="rating"
+                        value={this.state.rating}
+                        type="number"
+                        onChange={this.handleOnChange}
+                        style={{width: "100%"}}
+                        required
+                    />
+                    
                 </Form.Field>
                 <Form.Field>
                     <label >Genre</label>
@@ -71,6 +85,18 @@ render() {
                         placeholder="Genre"
                         name="genre"
                         value={this.state.genre}
+                        onChange={this.handleOnChange}
+                        style={{width: "100%"}}
+                        required
+                    />
+                </Form.Field>
+                <Form.Field>
+                    <label >Date of Publish</label>
+                    <input 
+                        placeholder="Date"
+                        name="publishing_date"
+                        value={this.state.publishing_date}
+                        type="date"
                         onChange={this.handleOnChange}
                         style={{width: "100%"}}
                         required

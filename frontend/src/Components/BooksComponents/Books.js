@@ -1,8 +1,10 @@
 import React from 'react'
 import BooksSearch from './BooksSearch';
 import BooksCollection from './BooksCollection';
-import { Link  } from 'react-router-dom';
 import NavBar from '../NavBar';
+import { Container } from 'semantic-ui-react';
+import NewBooks from '../NewBooksComponents/NewBooks';
+import { Link } from 'react-router-dom'
 
 
 class Books extends React.Component {
@@ -48,15 +50,30 @@ class Books extends React.Component {
    
     render() {
         return (
-            <div>
+            <>
                  <NavBar />
-                <h1>Catalog</h1>
-                <Link to="/brequests">Add A Book</Link>
-                <br />
-               <BooksSearch handleSearchInput={this.handleSearchInput} />
-               <BooksCollection books={this.state.renderedBooks} />
-               <br />  
-            </div>
+                 <div className="h1">
+                    Recommended Books
+                 </div>
+                 <br /><br /><br />
+                <Container>
+                    <BooksSearch handleSearchInput={this.handleSearchInput} />
+                    <br />
+                    <BooksCollection books={this.state.renderedBooks} />
+                </Container>
+                <br /><br /><br />
+                <Container>
+                <div className="h1">
+                    Your Library
+                 </div>
+                 <br /><br /><br />
+                    <div className="linkPosition">
+                        <Link to="/brequests" className="newTitle">Upload A Book</Link>
+                    </div>
+                        <br /><br /><br />
+                    <NewBooks />
+                </Container>
+            </>
             
         );     
     }
