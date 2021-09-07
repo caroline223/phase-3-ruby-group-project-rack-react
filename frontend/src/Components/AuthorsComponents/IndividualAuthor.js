@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Image } from 'semantic-ui-react'
+import { Card, Image, Button } from 'semantic-ui-react'
 import authorPhoto from './AuthorsPhotos'
 
 const gifPic = 'https://media3.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif?cid=790b761103f7276c9f0dd8c0fe8c4837a39afe6a68edade0&rid=giphy.gif&ct=g'
@@ -46,6 +46,7 @@ class IndividualAuthor extends React.Component {
                             {degree}
                         </Card.Description>
                     </Card.Content>
+                    <Button><a href="http://localhost:3000/books">Back</a></Button>
              </Card>
               </>
           )
