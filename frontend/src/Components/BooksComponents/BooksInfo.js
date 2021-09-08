@@ -2,9 +2,20 @@ import React from 'react'
 import { Card, Image, Button } from 'semantic-ui-react'
 import bookPhoto from './BooksPhotos'
 import { Link } from 'react-router-dom'
+import FavoriteBook from './FavoriteBook'
 
 class BooksInfo extends React.Component {
     
+    state = {
+        count: 0
+    }
+
+    increaseVote = () => {
+        this.setState(({count}) => ({
+            count: count + 1
+        }))
+    }
+
 
     getBooks(){
         fetch(`http://localhost:9292/books/`)
@@ -57,6 +68,10 @@ class BooksInfo extends React.Component {
                      </div>
                       <div>
                         Rating: {rating}/10
+                      </div>
+                      <br />
+                      <div>
+                          <FavoriteBook count={this.state.count} increaseVote={this.increaseVote} />
                       </div>
                   </Card.Description>    
                 </Card.Content>
