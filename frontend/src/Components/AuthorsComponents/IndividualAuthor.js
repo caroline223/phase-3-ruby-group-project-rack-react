@@ -11,7 +11,7 @@ class IndividualAuthor extends React.Component {
     }
 
     componentDidMount(){
-        fetch(`http://localhost:9292/authors/${this.props.match.params.id}`)
+        fetch(`http://localhost:9292/author/${this.props.match.params.id}`)
         .then(response => response.json())
         .then((author) => {
             this.setState({ author })
