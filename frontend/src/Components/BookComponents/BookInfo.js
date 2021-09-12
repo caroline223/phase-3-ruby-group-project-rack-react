@@ -1,13 +1,14 @@
 import React from 'react'
 import { Card, Image, Button } from 'semantic-ui-react'
-import bookPhoto from './BooksPhotos'
+import bookPhoto from './BookPhoto'
 import { Link } from 'react-router-dom'
 import FavoriteBook from './FavoriteBook'
 
-class BooksInfo extends React.Component {
+
+class BookInfo extends React.Component {
     
     state = {
-        count: 0
+        count: 0,
     }
 
     increaseVote = () => {
@@ -16,29 +17,22 @@ class BooksInfo extends React.Component {
         }))
     }
 
+    notInterested = (event) => {
+      if(window.confirm("Are you sure?"))
+      fetch(`http://localhost:9292/books/${event.target.id}`, {
+          method: 'DELETE'
+      })
+     .then(() => { this.deleteBook(event.target.id) })
+    }
 
-    getBooks(){
-        fetch(`http://localhost:9292/books/`)
-       .then((result) => {
-           result.json().then((resp) => {
-               console.warn(resp)
-           })
-       })
-    }
-    
-    
-    deleteBook(id){
-       fetch(`http://localhost:9292/books/${id}`, {
-           method: 'DELETE'
-       })
-       .then((result) => {
-           result.json().then((resp) => {
-               console.warn(resp)
-               this.getBooks()
-           })
-       })
-    }
- 
+
+    deleteBook = (id) => {
+      console.log(id)
+      let newBooks = {...this.props.books}
+
+      this.setState()
+  
+  }
 
     render() {
 
@@ -49,10 +43,10 @@ class BooksInfo extends React.Component {
             }
         }
 
-        const {id, title, genre, author_name, publishing_date, rating, author_id} = this.props.books
+        const {title, genre, author_name, publishing_date, rating, author_id} = this.props.books
         return (
           <Card style={layout.card} color='olive'>
-             <Image src={bookPhoto[Math.floor(Math.random()*bookPhoto.length)]} width="300" height="200"/>
+            <Image src={bookPhoto[Math.floor(Math.random()*bookPhoto.length)]} width="300" height="200"/> 
               <Card.Content className="bookDescription">
                   <header>
                   {title} 
@@ -61,7 +55,7 @@ class BooksInfo extends React.Component {
                       <br />
                       {genre}
                       <div>
-                        <Link to={`authors/${author_id}`}>Author's Name: {author_name}</Link>   
+                        <Link to={`author/${author_id}`}>Author's Name: {author_name}</Link>   
                       </div>
                      <div>
                         Date Published: {publishing_date}
@@ -77,7 +71,7 @@ class BooksInfo extends React.Component {
                 </Card.Content>
                 <Card.Content>
                       <div className="buttonPosition">
-                        <Button onClick={()=>this.deleteBook(id)}>Not Interested</Button>
+                        <Button onClick={this.notInterested}  id={this.props.books.id}>Not Interested</Button>
                       </div>  
                 </Card.Content>
           </Card>
@@ -86,4 +80,4 @@ class BooksInfo extends React.Component {
     }
 }
 
-export default BooksInfo;
+export default BookInfo;

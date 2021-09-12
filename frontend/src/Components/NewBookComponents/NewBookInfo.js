@@ -1,28 +1,27 @@
 import React from 'react' 
 import { Card, Image, Button } from 'semantic-ui-react'
-import bookPhoto from '../BooksComponents/BooksPhotos'
+import bookPhoto from '../BookComponents/BookPhoto'
 
 
-class NewBooksInfo extends React.Component{
+class NewBookInfo extends React.Component{
+
+  deleteBook(id){
+    fetch(`http://localhost:9292/brequest/${id}`, {
+        method: 'DELETE'
+    })
+    .then((result) => {
+        result.json().then((resp) => {
+            console.warn(resp)
+            this.getBooks()
+        })
+    })
+ }
 
     getBooks(){
-        fetch(`http://localhost:9292/brequests/`)
+        fetch(`http://localhost:9292/brequest/`)
        .then((result) => {
            result.json().then((resp) => {
                console.warn(resp)
-           })
-       })
-    }
-    
-    
-    deleteBook(id){
-       fetch(`http://localhost:9292/brequests/${id}`, {
-           method: 'DELETE'
-       })
-       .then((result) => {
-           result.json().then((resp) => {
-               console.warn(resp)
-               this.getBooks()
            })
        })
     }
@@ -36,7 +35,7 @@ class NewBooksInfo extends React.Component{
                 }
             }
     
-            const {id, title, genre, author_name, publishing_date, rating} = this.props.novels
+            const {id, title, genre, author_name, publishing_date, rating} = this.props.novel
             return (
               <Card color='olive' style={layout.card} >
                  <Image src={bookPhoto[Math.floor(Math.random()*bookPhoto.length)]} width="300" height="200"/>
@@ -67,4 +66,4 @@ class NewBooksInfo extends React.Component{
         }
     }
 
-export default NewBooksInfo
+export default NewBookInfo

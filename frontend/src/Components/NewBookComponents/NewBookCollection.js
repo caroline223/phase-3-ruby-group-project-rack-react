@@ -1,5 +1,5 @@
 import React from 'react' 
-import NewBooksInfo from './NewBooksInfo';
+import NewBookInfo from './NewBookInfo';
 import { Card } from 'semantic-ui-react'
 
 
@@ -9,7 +9,7 @@ class NewBookCollection extends React.Component {
         return (
             <div>
                 <Card.Group itemsPerRow={4}>
-                    {this.props.novels.map((novelObj, id) => <NewBooksInfo key={id} novels={novelObj} />)}
+                    {this.props.novel.map((novel) => <NewBookInfo key={novel.id} novel={novel}  />)}
                 </Card.Group>
             </div>
         )

@@ -1,7 +1,7 @@
 import React from 'react'
 import {Card, Image} from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
-import bookPhoto from './BooksComponents/BooksPhotos'
+import bookPhoto from './BookComponents/BookPhoto'
 
 
 class HomePage extends React.Component {

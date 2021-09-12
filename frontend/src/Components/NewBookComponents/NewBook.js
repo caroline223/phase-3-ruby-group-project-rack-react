@@ -2,32 +2,32 @@ import React from 'react'
 import NewBookCollection from './NewBookCollection';
 import { Container } from 'semantic-ui-react';
 
-class NewBooks extends React.Component {
+class NewBook extends React.Component {
     
     state = { 
-        novels: []       
+        novel: []       
     }
 
 
     componentDidMount() {
-        fetch('http://localhost:9292/brequests')
+        fetch('http://localhost:9292/brequest')
         .then(response => response.json())
-        .then(this.setNewBooks);
-    }
+        .then(this.setNewBook);
+    } 
 
    
-    setNewBooks = (newCollection) => {
+    setNewBook = (newCollection) => {
         this.setState({
-           novels: [...newCollection] 
+           novel: [...newCollection] 
         })
     }
-    
+ 
     render() {
         return (
             <>
             
            <Container>
-                <NewBookCollection novels={this.state.novels} />
+                <NewBookCollection novel={this.state.novel}  />
            </Container>
                 
             </> 
@@ -37,4 +37,4 @@ class NewBooks extends React.Component {
     
 }
 
-export default NewBooks;
+export default NewBook;

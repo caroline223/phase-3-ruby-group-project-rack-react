@@ -1,37 +1,33 @@
 import React from 'react'
-import BooksSearch from './BooksSearch';
-import BooksCollection from './BooksCollection';
+import BookSearch from './BookSearch';
+import BookCollection from './BookCollection';
 import NavBar from '../NavBar';
 import { Container } from 'semantic-ui-react';
-import NewBooks from '../NewBooksComponents/NewBooks';
+import NewBook from '../NewBookComponents/NewBook';
 import { Link } from 'react-router-dom'
 
 
-class Books extends React.Component {
+class Book extends React.Component {
     
     state = {
         books: [],
         renderedBooks: [],
-        searchInput: '',
+        searchInput: ''
     }
 
-    componentDidMount() {
+    
+    componentDidMount = () => {
         fetch('http://localhost:9292/books')
         .then(response => response.json())
-        .then(this.setInitialBooks);
+        .then(this.setBooks);
     }
 
-    setInitialBooks = (bookCollection) => {
+
+    setBooks = (bookCollection) => {
         this.setState({
             books: [...bookCollection],
             renderedBooks: [...bookCollection]
         })
-    }
-
-    filterSearchByInput = (input) => {
-        console.log(input)
-        return this.state.books.filter(book => book.genre.toLowerCase().includes(input.toLowerCase())) 
-
     }
 
     handleSearchInput = (event) => {
@@ -46,7 +42,15 @@ class Books extends React.Component {
         }
 
     }
+    
+    filterSearchByInput = (input) => {
+        console.log(input)
+        return this.state.books.filter(book => book.genre.toLowerCase().includes(input.toLowerCase())) 
 
+    }
+
+    
+    
    
     render() {
         return (
@@ -57,9 +61,9 @@ class Books extends React.Component {
                  </div>
                  <br /><br /><br />
                 <Container>
-                    <BooksSearch handleSearchInput={this.handleSearchInput} />
+                    <BookSearch handleSearchInput={this.handleSearchInput} />
                     <br />
-                    <BooksCollection books={this.state.renderedBooks} />
+                    <BookCollection books={this.state.renderedBooks} />
                 </Container>
                 <br /><br /><br />
                 <Container>
@@ -68,10 +72,10 @@ class Books extends React.Component {
                  </div>
                     <br /><br /><br />
                 <div className="linkPosition">
-                    <Link to="/brequests" className="newTitle">Upload A Book</Link>
+                    <Link to="/brequest" className="newTitle">Upload A Book</Link>
                 </div>
                         <br /><br /><br />
-                    <NewBooks />
+                    <NewBook />
                 </Container>
             </>
             
@@ -79,4 +83,4 @@ class Books extends React.Component {
     }
 }
 
-export default Books;
+export default Book;

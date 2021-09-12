@@ -24,9 +24,9 @@ class BooksForm extends React.Component{
     handleFormSubmit = (event) => {
         event.preventDefault()
         alert("Your form has been successfully submitted!")
-        fetch('http://localhost:9292/brequests', this.configObject())
+        fetch('http://localhost:9292/brequest', this.configObject())
         .then(response => response.json())
-        .then(data => this.props.history.push('/brequests'))
+        .then(data => this.props.history.push('/brequest'))
         this.setState(defaultState)
     }
 
@@ -108,13 +108,16 @@ render() {
                <Form.Field>
                    <div className="formButtonPosition">
                         <Form.Button >Submit</Form.Button>
-                        <Form.Button ><a href="http://localhost:3000/"> Home </a></Form.Button>
-                        <Form.Button ><a href="http://localhost:3000/books"> Back </a></Form.Button>
+                        <br />
                     </div>   
                </Form.Field>
-                   
-            
             </Form>
+
+            <div className="formButtonPosition">
+                <Form.Button ><a href="http://localhost:3000/"> Home </a></Form.Button>
+                <br />
+                <Form.Button ><a href="http://localhost:3000/books"> Back </a></Form.Button>  
+            </div>
         </div>
     )
 }
