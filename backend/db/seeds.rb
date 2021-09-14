@@ -1,6 +1,6 @@
 require 'faker'
 
-5.times do
+8.times do
     Author.create(first_name: Faker::Name.first_name, 
                  last_name: Faker::Name.last_name,
                  birth_city: Faker::Address.city,
@@ -11,7 +11,7 @@ require 'faker'
                 )
 end
 
-20.times do
+40.times do
     #sample pulls a random element out of an array 
     id = Author.all.sample.id
     Book.create(title: Faker::Book.title, 
