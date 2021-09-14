@@ -19,6 +19,7 @@ function NavBar(props) {
         <nav style={layout.nav} className="navBackground">
              <Link to="/" className="navTitle">Home</Link>
              <Link to="/books" className="navTitle">Books</Link>
+             <Link to="/authors" className="navTitle">Authors</Link>
              <Link to="/brequest" className="navTitle">Add A Book</Link>
         </nav>
     )
