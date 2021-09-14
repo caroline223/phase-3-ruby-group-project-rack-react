@@ -3,7 +3,7 @@ import BookSearch from './BookSearch';
 import BookCollection from './BookCollection';
 import NavBar from '../NavBar';
 import { Container } from 'semantic-ui-react';
-import NewBook from '../NewBookComponents/NewBook';
+import NewNovel from '../NewNovelComponents/NewNovel'
 import { Link } from 'react-router-dom'
 
 
@@ -56,7 +56,6 @@ class Book extends React.Component {
         this.setState({
           renderedBooks: newBooks,
         })
-    
     }
   
 
@@ -85,7 +84,7 @@ class Book extends React.Component {
                     <Link to="/brequest" className="newTitle">Upload A Book</Link>
                 </div>
                         <br /><br /><br />
-                    <NewBook />
+                    <NewNovel />
                 </Container>
             </>
             
