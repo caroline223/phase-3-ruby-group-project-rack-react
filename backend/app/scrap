@@ -70,3 +70,91 @@ class AuthorBooks extends React.Component {
 }
 
 export default AuthorBooks;
+
+
+notInterested = (event) => {
+        fetch(`http://localhost:9292/books/${event.target.id}`, {
+            method: 'DELETE'
+        })
+       .then(() => { this.deleteBook(event.target.id) })
+    }
+   
+    deleteBook = (id) => {
+        console.log(id)
+        this.setState({
+            books: this.state.books.filter((b) => b.id !== id)
+        })
+    }
+  
+
+  Methods for Upcoming Assessment
+
+  In the Book.rb fike
+  def author
+    Author.select do |author|
+      author.id == self.author_id
+    end
+
+  In the Author.rb file 
+
+   def books
+        Book.select do |book|
+           book.author_id == self.id
+        end
+    end
+
+    def add_book(title, genre, publishing_date, rating, image_url)
+        Book.create(
+            title: title,
+            genre: genre,
+            author_id: self.id,
+            publishing_date: publishing_date,
+            rating: rating,
+            image_url: image_url
+        )
+    end
+
+    def total_books
+        self.books.size
+    end
+    
+    def self.most_books
+         includes(:books).all.max_by {|author| author.books.length}
+    end
+
+    def self.least_books
+        includes(:books).all.min_by {|author| author.books.length}
+    end
+
+    def rating
+        self.books.map{|book| book.rating}
+    end
+
+    def total_rating
+       ( self.books.map{|book| book.rating}.sum).to_f
+    end
+    
+
+    def average_rating
+       ( total_rating / self.books.map{|book| book.rating}.count).to_f
+    end
+
+    def self.highest_rating_author
+       high_rating = self.all.map{|author| author.average_rating}.max
+       self.all.filter{|author| author.average_rating == high_rating}.map {|author| author.full_name}
+    end
+
+    def self.lowest_rating_author
+        low_rating = self.all.map{|author| author.average_rating}.min
+        self.all.filter{|author| author.average_rating == low_rating}.map {|author| author.full_name}
+    end
+
+    def highest_rated_book
+        high_rating = self.books.map{ |book| book.rating}.max 
+        self.books.filter{|book| book.rating == high_rating}.map {|book| book.title}
+    end
+
+    def lowest_rated_book
+        low_rating = self.books.map {|book| book.rating}.min
+        self.books.filter{|book| book.rating == low_rating}.map {|book| book.title}
+    end

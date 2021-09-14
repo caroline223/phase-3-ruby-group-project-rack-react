@@ -4,7 +4,7 @@ class Application
     resp = Rack::Response.new
     @req = Rack::Request.new(env)
 
-  if @req.path.match(/authors/) && @req.get? && params_id
+  if @req.path.match(/author/) && @req.get? && params_id
     author = Author.find_by_id(params_id)
     author_info = {
               author_name: author.full_name,
@@ -16,11 +16,11 @@ class Application
     return [200, { 'Content-Type' => 'application/json' }, [ author_info.to_json ]] 
 
   
-  elsif @req.path.match(/authors/) && @req.get?
+  elsif @req.path.match(/author/) && @req.get?
     return [200, { 'Content-Type' => 'application/json' }, [ Author.all_with_books.to_json ]]
 
   
-  elsif @req.path.match(/authors/) && @req.post?
+  elsif @req.path.match(/author/) && @req.post?
       data = JSON.parse  @req.body.read 
       author =  Author.create(data)
       return [200, { 'Content-Type' => 'application/json' }, [author.to_json ]]
@@ -48,20 +48,20 @@ class Application
       return [200, { 'Content-Type' => 'application/json' }, [ {message: "Book deleted"}.to_json ]]
    
    
-    elsif @req.path.match(/brequests/) && @req.get?
+    elsif @req.path.match(/brequest/) && @req.get?
       book = Novel.all
       return [200, { 'Content-Type' => 'application/json' }, [ book.to_json ]]
   
     
-    elsif @req.path.match(/brequests/) && @req.post?
+    elsif @req.path.match(/brequest/) && @req.post?
       data = JSON.parse  @req.body.read 
       book =  Novel.create(data)
       return [200, { 'Content-Type' => 'application/json' }, [book.to_json ]]
      
 
 
-    elsif @req.path.match(/brequests/) && @req.delete? 
-      id = @req.path_info.split('/brequests/').last
+    elsif @req.path.match(/brequest/) && @req.delete? 
+      id = @req.path_info.split('/brequest/').last
       novel = Novel.find_by_id(id)
       novel.delete
       return [200, { 'Content-Type' => 'application/json' }, [ {message: "Book deleted"}.to_json ]]
