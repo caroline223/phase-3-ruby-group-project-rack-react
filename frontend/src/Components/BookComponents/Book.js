@@ -49,7 +49,17 @@ class Book extends React.Component {
 
     }
 
+    deleteBook = (id) => {
+        console.log(id)
+        const newBooks = this.state.renderedBooks.filter(b => b.id !== id)
+
+        this.setState({
+          renderedBooks: newBooks,
+        })
     
+    }
+  
+
     
    
     render() {
@@ -63,7 +73,7 @@ class Book extends React.Component {
                 <Container>
                     <BookSearch handleSearchInput={this.handleSearchInput} />
                     <br />
-                    <BookCollection books={this.state.renderedBooks} />
+                    <BookCollection books={this.state.renderedBooks} deleteBook={this.deleteBook} />
                 </Container>
                 <br /><br /><br />
                 <Container>

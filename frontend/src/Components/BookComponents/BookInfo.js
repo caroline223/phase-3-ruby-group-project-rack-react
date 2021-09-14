@@ -12,27 +12,20 @@ class BookInfo extends React.Component {
     }
 
     increaseVote = () => {
+        alert("Great Choice!")
         this.setState(({count}) => ({
             count: count + 1
         }))
     }
 
     notInterested = (event) => {
+       const id = parseInt(event.target.id)
       if(window.confirm("Are you sure?"))
-      fetch(`http://localhost:9292/books/${event.target.id}`, {
+      fetch(`http://localhost:9292/books/${id}`, {
           method: 'DELETE'
       })
-     .then(() => { this.deleteBook(event.target.id) })
+     .then(() => { this.props.deleteBook(id) })
     }
-
-
-    deleteBook = (id) => {
-      console.log(id)
-      let newBooks = {...this.props.books}
-
-      this.setState()
-  
-  }
 
     render() {
 
@@ -71,7 +64,7 @@ class BookInfo extends React.Component {
                 </Card.Content>
                 <Card.Content>
                       <div className="buttonPosition">
-                        <Button onClick={this.notInterested}  id={this.props.books.id}>Not Interested</Button>
+                        <Button onClick={this.notInterested} id={this.props.books.id}>Not Interested</Button>
                       </div>  
                 </Card.Content>
           </Card>
