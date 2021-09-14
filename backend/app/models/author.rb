@@ -20,5 +20,23 @@ class Author < ActiveRecord::Base
             }
         end
     end
+
+    def books
+        Book.select do |book|
+            book.author_id == self.id
+        end
+    end
+
+    def add_book(title, genre, publishing_date, rating, image_url)
+        Book.create(
+            title: title,
+            genre: genre,
+            publishing_date: publishing_date,
+            author_id: self.id,
+            rating: rating,
+            image_url: image_url
+        )
+    end
+
    
 end
